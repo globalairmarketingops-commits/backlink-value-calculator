@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Backlink Value Calculator — GlobalAir.com Partnerships</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blue:#007BFF; --ink:#0A1628; --paper:#FAF8F4; --steel:#3C4A5E;
+    --line:#E5EAF1; --green:#97CB00; --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px;margin:0 auto;padding:28px 20px 64px;}
+  header{display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:8px;}
+  header img{height:38px;width:auto;}
+  header .titles h1{font-family:'Montserrat',sans-serif;font-weight:700;font-size:22px;margin:0;line-height:1.2;}
+  header .titles p{margin:2px 0 0;font-size:13px;color:var(--steel);}
+  .intro{font-size:14px;color:var(--steel);margin:20px 0 24px;}
+  .intro strong{color:var(--ink);font-weight:600;}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:22px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+  label.fld{display:block;font-size:13px;font-weight:500;color:var(--steel);margin-bottom:7px;}
+  .hint{color:#8A97A6;font-weight:400;}
+  select,input[type=range]{width:100%;}
+  select{font-family:inherit;font-size:14px;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:8px;height:40px;padding:0 10px;}
+  select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,123,255,.15);}
+  .rangerow{display:flex;align-items:center;gap:12px;}
+  input[type=range]{accent-color:var(--blue);}
+  .rangeval{font-size:16px;font-weight:600;min-width:30px;text-align:right;}
+  .out{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .stat .k{font-size:12px;color:var(--steel);}
+  .stat .v{font-family:'Montserrat',sans-serif;font-weight:700;font-size:30px;margin-top:2px;}
+  .stat .sub{font-size:12px;color:#8A97A6;margin-top:2px;}
+  .tierbadge{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;margin-top:2px;}
+  .tiernote{font-size:13px;color:var(--steel);margin-top:5px;}
+  .flag{display:none;margin-top:14px;background:#FFF7E6;border:1px solid #F5D98B;border-radius:10px;padding:11px 14px;font-size:13px;color:#7A5A00;}
+  h2{font-family:'Montserrat',sans-serif;font-weight:600;font-size:17px;margin:0 0 14px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-weight:600;color:var(--steel);font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+  td.tier{font-weight:600;white-space:nowrap;}
+  ul.guard{margin:0;padding-left:20px;}
+  ul.guard li{margin-bottom:9px;font-size:14px;color:var(--ink);}
+  ul.guard li strong{font-weight:600;}
+  footer{margin-top:26px;font-size:12px;color:#8A97A6;border-top:1px solid var(--line);padding-top:16px;}
+  a{color:var(--blue);}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="https://resources.globalair.com/brand/GlobalAir-logo-500-blackletters.png" alt="GlobalAir.com" />
+    <div class="titles">
+      <h1>Backlink Value Calculator</h1>
+      <p>Partnership barter valuation &middot; internal use</p>
+    </div>
+  </header>
+
+  <p class="intro">
+    Use this before agreeing any barter where a partner places a <strong>GlobalAir.com link on their site</strong> and we pay them back in
+    product or service. Enter what you know about their site &mdash; it returns an estimated value <strong>in GlobalAir.com product/service</strong>,
+    a tier, and how much to trade. Rule of thumb: relevance to aviation and real referral traffic matter more than a big domain-rating number.
+    Get the DR figure from Ahrefs (or the free <a href="https://ahrefs.com/website-authority-checker" target="_blank" rel="noopener">Ahrefs Authority Checker</a>).
+  </p>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label class="fld">Their domain rating (DR / DA), 0&ndash;100</label>
+        <div class="rangerow">
+          <input type="range" id="dr" min="0" max="100" value="45" step="1" />
+          <span class="rangeval" id="drOut">45</span>
+        </div>
+      </div>
+      <div>
+        <label class="fld" for="rel">Relevance to aviation / our buyers</label>
+        <select id="rel">
+          <option value="1.6">Core aviation (aircraft, FBO, pilots, MRO, training)</option>
+          <option value="1.1" selected>Adjacent (luxury, travel, biz/finance, airport-area)</option>
+          <option value="0.4">Off-topic</option>
+        </select>
+      </div>
+      <div>
+        <label class="fld" for="type">Link type + placement</label>
+        <select id="type">
+          <option value="1.25">Dofollow &mdash; in-content / editorial</option>
+          <option value="1.0" selected>Dofollow &mdash; resource / partner / directory page</option>
+          <option value="0.8">Dofollow &mdash; footer / sidebar (sitewide)</option>
+          <option value="0.4">Nofollow / sponsored (any placement)</option>
+        </select>
+      </div>
+      <div>
+        <label class="fld" for="ref">Real referral traffic to us? <span class="hint">(top price driver)</span></label>
+        <select id="ref">
+          <option value="100">High &mdash; their audience is our buyers, real visits</option>
+          <option value="40" selected>Moderate</option>
+          <option value="0">Negligible / low-traffic page</option>
+        </select>
+      </div>
+      <div>
+        <label class="fld" for="perm">Permanence</label>
+        <select id="perm">
+          <option value="1.0" selected>Permanent</option>
+          <option value="0.7">Time-limited (&le;12 months)</option>
+        </select>
+      </div>
+      <div>
+        <label class="fld" for="recip">Are we also linking back to them?</label>
+        <select id="recip">
+          <option value="1.0" selected>No &mdash; one-way link to us</option>
+          <option value="0.85">Yes &mdash; reciprocal / link swap</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="out">
+      <div class="stat">
+        <div class="k">Trade-back value of their link</div>
+        <div class="v" id="valOut">$150</div>
+        <div class="sub">in GlobalAir.com product / service value</div>
+      </div>
+      <div class="stat">
+        <div class="k">Tier + how to trade</div>
+        <div class="tierbadge" id="tierOut"><span class="dot" id="tierDot"></span>Silver</div>
+        <div class="tiernote" id="tierNote">Fair &mdash; offer one mid-value asset.</div>
+      </div>
+    </div>
+
+    <div class="flag" id="flag"></div>
+  </div>
+
+  <div class="card">
+    <h2>Value tiers &mdash; quick reference</h2>
+    <table>
+      <thead><tr><th>Tier</th><th>Trade-back value</th><th>Typical profile</th><th>Your move</th></tr></thead>
+      <tbody>
+        <tr><td class="tier"><span class="dot" style="background:#0A1628"></span>Platinum</td><td>$600+</td><td>DR 70+, core aviation, editorial, real buyer traffic</td><td>Real product trade &mdash; banner flight or email feature</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#007BFF"></span>Gold</td><td>$300&ndash;599</td><td>DR 50&ndash;69 core aviation dofollow</td><td>Directory listing + social feature, or short banner run</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#3C4A5E"></span>Silver</td><td>$120&ndash;299</td><td>DR 30&ndash;49 aviation dofollow, or DR 50+ adjacent</td><td>One mid-value asset (listing or social feature)</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#97CB00"></span>Bronze</td><td>$40&ndash;119</td><td>DR 15&ndash;29, or weak relevance / placement</td><td>No-cost assets only &mdash; a social shoutout, a mention</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#B4B2A9"></span>Decline</td><td>&lt; $40</td><td>DR &lt;15, off-topic, nofollow-only, or link-farm signals</td><td>Give up nothing of value</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Guardrails</h2>
+    <ul class="guard">
+      <li><strong>Relevance beats authority.</strong> A DR-40 aviation site is worth more to us than a DR-70 generic-business one. Don&rsquo;t let a big number seduce the deal.</li>
+      <li><strong>Reject toxic links.</strong> Link farms, PBNs, &ldquo;SEO directories&rdquo; with thousands of unrelated outbound links, or deindexed sites = zero or negative value. Decline.</li>
+      <li><strong>We negotiate from strength.</strong> A dofollow from GlobalAir.com is a premium asset (30 years, 200K+ ranking keywords). Never swap it 1:1 to a small site &mdash; push for one-way, or extract extra value.</li>
+      <li><strong>Nofollow &ne; worthless, but &ne; SEO.</strong> Its value is referral traffic + brand, not ranking equity. Price it low.</li>
+    </ul>
+  </div>
+
+  <footer>
+    GlobalAir.com &middot; Marketing &mdash; Partnerships. Internal valuation guide; figures are calibrated estimates, not a published rate card.
+    Values anchor to the low end of 2026 link-pricing benchmarks (agency markup + outreach labor stripped out, since barters carry neither).
+    <span id="ver"></span>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var ids=['dr','rel','type','ref','perm','recip'];
+  var tierColors={Platinum:'#0A1628',Gold:'#007BFF',Silver:'#3C4A5E',Bronze:'#97CB00',Decline:'#B4B2A9'};
+  function baseFromDR(dr){ if(dr>=70)return 350; if(dr>=50)return 200; if(dr>=30)return 100; if(dr>=15)return 45; return 20; }
+  function calc(){
+    var dr=+document.getElementById('dr').value;
+    document.getElementById('drOut').textContent=dr;
+    var rel=+document.getElementById('rel').value;
+    var type=+document.getElementById('type').value;
+    var ref=+document.getElementById('ref').value;
+    var perm=+document.getElementById('perm').value;
+    var recip=+document.getElementById('recip').value;
+    var val=Math.round((baseFromDR(dr)*rel*type+ref)*perm*recip);
+    document.getElementById('valOut').textContent='$'+val.toLocaleString();
+    var tier,note;
+    if(val>=600){tier='Platinum';note='Premium — worth a real product trade (banner flight, email feature).';}
+    else if(val>=300){tier='Gold';note='Strong — a directory listing + social feature, or a short banner run.';}
+    else if(val>=120){tier='Silver';note='Fair — offer one mid-value asset (directory listing or social feature).';}
+    else if(val>=40){tier='Bronze';note='Low — trade only no-cost assets (a social shoutout, a mention).';}
+    else{tier='Decline';note='Give up nothing of value. Not worth a GlobalAir.com link back.';}
+    document.getElementById('tierOut').innerHTML='<span class="dot" style="background:'+tierColors[tier]+'"></span>'+tier;
+    document.getElementById('tierNote').textContent=note;
+    var flag=document.getElementById('flag'); var msgs=[];
+    if(rel===0.4) msgs.push('Off-topic: Google discounts irrelevant links — verify it is not a link farm / PBN before trading anything.');
+    if(recip===0.85 && dr<40) msgs.push('Reciprocal swap with a lower-authority site: our link is worth more than theirs — push for one-way or extra value.');
+    if(type===0.4) msgs.push('Nofollow passes little SEO equity — value here is mostly referral + brand, not ranking.');
+    if(msgs.length){ flag.style.display='block'; flag.innerHTML=msgs.join('<br>'); } else { flag.style.display='none'; }
+  }
+  ids.forEach(function(id){ var el=document.getElementById(id); el.addEventListener('input',calc); el.addEventListener('change',calc); });
+  calc();
+})();
+</script>
+</body>
+</html>
