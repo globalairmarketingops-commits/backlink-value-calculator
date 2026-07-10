@@ -32,6 +32,9 @@
   input[type=text]::placeholder{color:#9AA6B2;}
   .dealrow{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
   .dealrow>div{flex:1;min-width:180px;}
+  #checkBtn{font-family:inherit;font-size:13px;font-weight:500;color:var(--white);background:var(--blue);border:none;border-radius:8px;height:36px;padding:0 16px;cursor:pointer;}
+  #checkBtn:hover{background:#0066d6;}
+  #checkBtn:active{transform:scale(.98);}
   .rangerow{display:flex;align-items:center;gap:12px;}
   input[type=range]{accent-color:var(--blue);}
   .rangeval{font-size:16px;font-weight:600;min-width:30px;text-align:right;}
@@ -81,8 +84,12 @@
         <input type="text" id="company" placeholder="e.g. Acme Aviation" />
       </div>
       <div>
-        <label class="fld" for="url">Partner website URL <span class="hint">(Ahrefs DR lookup coming later)</span></label>
+        <label class="fld" for="url">Partner website URL</label>
         <input type="text" id="url" placeholder="e.g. acmeaviation.com" />
+        <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
+          <button type="button" id="checkBtn">Check authority</button>
+          <span id="checkOut" style="font-size:12.5px;color:var(--steel);"></span>
+        </div>
       </div>
     </div>
     <div class="grid">
@@ -221,6 +228,33 @@
   }
   document.getElementById('company').addEventListener('input',label);
   document.getElementById('url').addEventListener('input',label);
+
+  var CONFIG={ OPR_KEY:'', PROXY_URL:'' };
+  function setDR(v){ v=Math.max(0,Math.min(100,Math.round(v))); document.getElementById('dr').value=v; document.getElementById('drOut').textContent=v; calc(); }
+  function checkAuthority(){
+    var out=document.getElementById('checkOut');
+    var dom=domainOf(document.getElementById('url').value);
+    if(!dom){ out.textContent='Enter a website URL first.'; return; }
+    if(CONFIG.PROXY_URL || CONFIG.OPR_KEY){
+      out.textContent='Checking '+dom+'…';
+      var u, opts={};
+      if(CONFIG.PROXY_URL){ u=CONFIG.PROXY_URL+(CONFIG.PROXY_URL.indexOf('?')>-1?'&':'?')+'domain='+encodeURIComponent(dom); }
+      else { u='https://openpagerank.com/api/v1.0/getPageRank?domains%5B%5D='+encodeURIComponent(dom); opts={headers:{'API-OPR-Key':CONFIG.OPR_KEY}}; }
+      fetch(u,opts).then(function(r){return r.json();}).then(function(d){
+        var it=(d&&d.response&&d.response[0])||(Array.isArray(d)&&d[0])||d;
+        var pr=(it&&it.page_rank_decimal!=null)?it.page_rank_decimal:(it&&it.page_rank_integer);
+        if(pr==null || (it&&it.status_code&&it.status_code!==200)){ out.textContent='No authority data for '+dom+' — enter DR manually.'; return; }
+        var score=Math.round(pr*10);
+        setDR(score);
+        out.innerHTML='Authority ≈ <strong>'+score+'</strong>/100 — DR set below';
+      }).catch(function(){ out.textContent='Lookup failed — enter DR manually.'; });
+    } else {
+      if(navigator.clipboard){ navigator.clipboard.writeText(dom).catch(function(){}); }
+      out.innerHTML='Copied <strong>'+dom+'</strong> — paste it in the checker tab, then type the DR below';
+      window.open('https://ahrefs.com/website-authority-checker','_blank','noopener');
+    }
+  }
+  document.getElementById('checkBtn').addEventListener('click',checkAuthority);
   calc(); label();
 })();
 </script>
