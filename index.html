@@ -26,9 +26,12 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
   label.fld{display:block;font-size:13px;font-weight:500;color:var(--steel);margin-bottom:7px;}
   .hint{color:#8A97A6;font-weight:400;}
-  select,input[type=range]{width:100%;}
-  select{font-family:inherit;font-size:14px;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:8px;height:40px;padding:0 10px;}
-  select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,123,255,.15);}
+  select,input[type=text],input[type=range]{width:100%;}
+  select,input[type=text]{font-family:inherit;font-size:14px;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:8px;height:40px;padding:0 10px;}
+  select:focus,input[type=text]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,123,255,.15);}
+  input[type=text]::placeholder{color:#9AA6B2;}
+  .dealrow{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .dealrow>div{flex:1;min-width:180px;}
   .rangerow{display:flex;align-items:center;gap:12px;}
   input[type=range]{accent-color:var(--blue);}
   .rangeval{font-size:16px;font-weight:600;min-width:30px;text-align:right;}
@@ -72,6 +75,16 @@
   </p>
 
   <div class="card">
+    <div class="dealrow">
+      <div>
+        <label class="fld" for="company">Partner company</label>
+        <input type="text" id="company" placeholder="e.g. Acme Aviation" />
+      </div>
+      <div>
+        <label class="fld" for="url">Partner website URL <span class="hint">(Ahrefs DR lookup coming later)</span></label>
+        <input type="text" id="url" placeholder="e.g. acmeaviation.com" />
+      </div>
+    </div>
     <div class="grid">
       <div>
         <label class="fld">Their domain rating (DR / DA), 0&ndash;100</label>
@@ -125,7 +138,7 @@
       <div class="stat">
         <div class="k">Trade-back value of their link</div>
         <div class="v" id="valOut">$150</div>
-        <div class="sub">in GlobalAir.com product / service value</div>
+        <div class="sub" id="valFor">in GlobalAir.com product / service value</div>
       </div>
       <div class="stat">
         <div class="k">Tier + how to trade</div>
@@ -199,7 +212,16 @@
     if(msgs.length){ flag.style.display='block'; flag.innerHTML=msgs.join('<br>'); } else { flag.style.display='none'; }
   }
   ids.forEach(function(id){ var el=document.getElementById(id); el.addEventListener('input',calc); el.addEventListener('change',calc); });
-  calc();
+  function domainOf(u){ u=(u||'').trim(); if(!u) return ''; try{ if(!/^https?:\/\//i.test(u)) u='https://'+u; return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return u.replace(/^https?:\/\//i,'').replace(/^www\./,'').split('/')[0]; } }
+  function label(){
+    var co=document.getElementById('company').value.trim();
+    var dom=domainOf(document.getElementById('url').value);
+    var who=co||dom; if(co&&dom) who=co+' ('+dom+')';
+    document.getElementById('valFor').textContent = who ? ('for '+who+' — in product / service value') : 'in GlobalAir.com product / service value';
+  }
+  document.getElementById('company').addEventListener('input',label);
+  document.getElementById('url').addEventListener('input',label);
+  calc(); label();
 })();
 </script>
 </body>
