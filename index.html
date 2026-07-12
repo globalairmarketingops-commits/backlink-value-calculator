@@ -74,7 +74,7 @@
     Use this before agreeing any barter where a partner places a <strong>GlobalAir.com link on their site</strong> and we pay them back in
     product or service. Enter what you know about their site &mdash; it returns an estimated value <strong>in GlobalAir.com product/service</strong>,
     a tier, and how much to trade. Rule of thumb: relevance to aviation and real referral traffic matter more than a big domain-rating number.
-    Get the DR figure from Ahrefs (or the free <a href="https://ahrefs.com/website-authority-checker" target="_blank" rel="noopener">Ahrefs Authority Checker</a>).
+    Drop in the partner&rsquo;s website and click <strong>Check authority</strong> &mdash; it pulls their live Ahrefs Domain Rating and fills the slider automatically.
   </p>
 
   <div class="card">
@@ -162,11 +162,11 @@
     <table>
       <thead><tr><th>Tier</th><th>Trade-back value</th><th>Typical profile</th><th>Your move</th></tr></thead>
       <tbody>
-        <tr><td class="tier"><span class="dot" style="background:#0A1628"></span>Platinum</td><td>$600+</td><td>DR 70+, core aviation, editorial, real buyer traffic</td><td>Real product trade &mdash; banner flight or email feature</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#007BFF"></span>Gold</td><td>$300&ndash;599</td><td>DR 50&ndash;69 core aviation dofollow</td><td>Directory listing + social feature, or short banner run</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#3C4A5E"></span>Silver</td><td>$120&ndash;299</td><td>DR 30&ndash;49 aviation dofollow, or DR 50+ adjacent</td><td>One mid-value asset (listing or social feature)</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#97CB00"></span>Bronze</td><td>$40&ndash;119</td><td>DR 15&ndash;29, or weak relevance / placement</td><td>No-cost assets only &mdash; a social shoutout, a mention</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#B4B2A9"></span>Decline</td><td>&lt; $40</td><td>DR &lt;15, off-topic, nofollow-only, or link-farm signals</td><td>Give up nothing of value</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#0A1628"></span>Platinum</td><td>$700&ndash;900</td><td>DR 70+, core aviation, editorial, real buyer traffic</td><td>Real product trade &mdash; banner flight or email feature</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#007BFF"></span>Gold</td><td>$400&ndash;699</td><td>DR 50&ndash;69 core aviation dofollow</td><td>Directory listing + social feature, or short banner run</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#3C4A5E"></span>Silver</td><td>$180&ndash;399</td><td>DR 30&ndash;49 aviation dofollow, or DR 50+ adjacent</td><td>One mid-value asset (listing or social feature)</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#97CB00"></span>Bronze</td><td>$70&ndash;179</td><td>DR 15&ndash;29, or weak relevance / placement</td><td>No-cost assets only &mdash; a social shoutout, a mention</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#B4B2A9"></span>Decline</td><td>&lt; $70</td><td>DR &lt;15, off-topic, nofollow-only, or link-farm signals</td><td>Give up nothing of value</td></tr>
       </tbody>
     </table>
   </div>
@@ -183,7 +183,7 @@
 
   <footer>
     GlobalAir.com &middot; Marketing &mdash; Partnerships. Internal valuation guide; figures are calibrated estimates, not a published rate card.
-    Values anchor to the low end of 2026 link-pricing benchmarks (agency markup + outreach labor stripped out, since barters carry neither).
+    Values are calibrated to 2026 link-pricing benchmarks, adjusted for barter (no agency markup or outreach labor). Domain Rating is live from Ahrefs.
     <span id="ver"></span>
   </footer>
 
@@ -193,7 +193,7 @@
 (function(){
   var ids=['dr','rel','type','ref','perm','recip'];
   var tierColors={Platinum:'#0A1628',Gold:'#007BFF',Silver:'#3C4A5E',Bronze:'#97CB00',Decline:'#B4B2A9'};
-  function baseFromDR(dr){ if(dr>=70)return 350; if(dr>=50)return 200; if(dr>=30)return 100; if(dr>=15)return 45; return 20; }
+  function baseFromDR(dr){ if(dr>=70)return 400; if(dr>=50)return 240; if(dr>=30)return 130; if(dr>=15)return 60; return 25; }
   function calc(){
     var dr=+document.getElementById('dr').value;
     document.getElementById('drOut').textContent=dr;
@@ -205,10 +205,10 @@
     var val=Math.round((baseFromDR(dr)*rel*type+ref)*perm*recip);
     document.getElementById('valOut').textContent='$'+val.toLocaleString();
     var tier,note;
-    if(val>=600){tier='Platinum';note='Premium — worth a real product trade (banner flight, email feature).';}
-    else if(val>=300){tier='Gold';note='Strong — a directory listing + social feature, or a short banner run.';}
-    else if(val>=120){tier='Silver';note='Fair — offer one mid-value asset (directory listing or social feature).';}
-    else if(val>=40){tier='Bronze';note='Low — trade only no-cost assets (a social shoutout, a mention).';}
+    if(val>=700){tier='Platinum';note='Premium — worth a real product trade (banner flight, email feature).';}
+    else if(val>=400){tier='Gold';note='Strong — a directory listing + social feature, or a short banner run.';}
+    else if(val>=180){tier='Silver';note='Fair — offer one mid-value asset (directory listing or social feature).';}
+    else if(val>=70){tier='Bronze';note='Low — trade only no-cost assets (a social shoutout, a mention).';}
     else{tier='Decline';note='Give up nothing of value. Not worth a GlobalAir.com link back.';}
     document.getElementById('tierOut').innerHTML='<span class="dot" style="background:'+tierColors[tier]+'"></span>'+tier;
     document.getElementById('tierNote').textContent=note;
@@ -229,7 +229,7 @@
   document.getElementById('company').addEventListener('input',label);
   document.getElementById('url').addEventListener('input',label);
 
-  var CONFIG={ OPR_KEY:'', PROXY_URL:'' };
+  var CONFIG={ PROXY_URL:'https://ahrefs-dr-proxy.vercel.app/api/dr' };
   function setDR(v){ v=Math.max(0,Math.min(100,Math.round(v))); document.getElementById('dr').value=v; document.getElementById('drOut').textContent=v; calc(); }
   function checkAuthority(){
     var out=document.getElementById('checkOut');
@@ -237,17 +237,10 @@
     if(!dom){ out.textContent='Enter a website URL first.'; return; }
     if(CONFIG.PROXY_URL || CONFIG.OPR_KEY){
       out.textContent='Checking '+dom+'…';
-      var u, opts={};
-      if(CONFIG.PROXY_URL){ u=CONFIG.PROXY_URL+(CONFIG.PROXY_URL.indexOf('?')>-1?'&':'?')+'domain='+encodeURIComponent(dom); }
-      else { u='https://openpagerank.com/api/v1.0/getPageRank?domains%5B%5D='+encodeURIComponent(dom); opts={headers:{'API-OPR-Key':CONFIG.OPR_KEY}}; }
-      fetch(u,opts).then(function(r){return r.json();}).then(function(d){
-        var it=(d&&d.response&&d.response[0])||(Array.isArray(d)&&d[0])||d;
-        var pr=(it&&it.page_rank_decimal!=null)?it.page_rank_decimal:(it&&it.page_rank_integer);
-        if(pr==null || (it&&it.status_code&&it.status_code!==200)){ out.textContent='No authority data for '+dom+' — enter DR manually.'; return; }
-        var score=Math.round(pr*10);
-        setDR(score);
-        out.innerHTML='Authority ≈ <strong>'+score+'</strong>/100 — DR set below';
-      }).catch(function(){ out.textContent='Lookup failed — enter DR manually.'; });
+      fetch(CONFIG.PROXY_URL+'?domain='+encodeURIComponent(dom)).then(function(r){return r.json();}).then(function(d){
+        if(d && d.dr!=null){ setDR(d.dr); out.innerHTML='Ahrefs DR <strong>'+d.dr+'</strong> for '+dom+' — set below'; }
+        else { out.textContent='No DR found for '+dom+' — enter it manually below.'; }
+      }).catch(function(){ out.textContent='Lookup failed — enter DR manually below.'; });
     } else {
       if(navigator.clipboard){ navigator.clipboard.writeText(dom).catch(function(){}); }
       out.innerHTML='Copied <strong>'+dom+'</strong> — paste it in the checker tab, then type the DR below';
