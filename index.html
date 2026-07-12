@@ -163,10 +163,10 @@
       <thead><tr><th>Tier</th><th>Trade-back value</th><th>Typical profile</th><th>Your move</th></tr></thead>
       <tbody>
         <tr><td class="tier"><span class="dot" style="background:#0A1628"></span>Platinum</td><td>$700&ndash;900</td><td>DR 70+, core aviation, editorial, real buyer traffic</td><td>Real product trade &mdash; banner flight or email feature</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#007BFF"></span>Gold</td><td>$400&ndash;699</td><td>DR 50&ndash;69 core aviation dofollow</td><td>Directory listing + social feature, or short banner run</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#3C4A5E"></span>Silver</td><td>$180&ndash;399</td><td>DR 30&ndash;49 aviation dofollow, or DR 50+ adjacent</td><td>One mid-value asset (listing or social feature)</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#97CB00"></span>Bronze</td><td>$70&ndash;179</td><td>DR 15&ndash;29, or weak relevance / placement</td><td>No-cost assets only &mdash; a social shoutout, a mention</td></tr>
-        <tr><td class="tier"><span class="dot" style="background:#B4B2A9"></span>Decline</td><td>&lt; $70</td><td>DR &lt;15, off-topic, nofollow-only, or link-farm signals</td><td>Give up nothing of value</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#007BFF"></span>Gold</td><td>$450&ndash;699</td><td>DR 50&ndash;69 core aviation dofollow</td><td>Directory listing + social feature, or short banner run</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#3C4A5E"></span>Silver</td><td>$250&ndash;449</td><td>DR 30&ndash;49 aviation dofollow, or DR 50+ adjacent</td><td>One mid-value asset (listing or social feature)</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#97CB00"></span>Bronze</td><td>$100&ndash;249</td><td>DR 15&ndash;29, or weak relevance / placement</td><td>No-cost assets only &mdash; a social shoutout, a mention</td></tr>
+        <tr><td class="tier"><span class="dot" style="background:#B4B2A9"></span>Decline</td><td>&lt; $100</td><td>DR &lt;15, off-topic, nofollow-only, or link-farm signals</td><td>Give up nothing of value</td></tr>
       </tbody>
     </table>
   </div>
@@ -193,7 +193,7 @@
 (function(){
   var ids=['dr','rel','type','ref','perm','recip'];
   var tierColors={Platinum:'#0A1628',Gold:'#007BFF',Silver:'#3C4A5E',Bronze:'#97CB00',Decline:'#B4B2A9'};
-  function baseFromDR(dr){ if(dr>=70)return 400; if(dr>=50)return 240; if(dr>=30)return 130; if(dr>=15)return 60; return 25; }
+  function baseFromDR(dr){ if(dr>=70)return 400; if(dr>=50)return 280; if(dr>=30)return 170; if(dr>=15)return 90; return 40; }
   function calc(){
     var dr=+document.getElementById('dr').value;
     document.getElementById('drOut').textContent=dr;
@@ -206,9 +206,9 @@
     document.getElementById('valOut').textContent='$'+val.toLocaleString();
     var tier,note;
     if(val>=700){tier='Platinum';note='Premium — worth a real product trade (banner flight, email feature).';}
-    else if(val>=400){tier='Gold';note='Strong — a directory listing + social feature, or a short banner run.';}
-    else if(val>=180){tier='Silver';note='Fair — offer one mid-value asset (directory listing or social feature).';}
-    else if(val>=70){tier='Bronze';note='Low — trade only no-cost assets (a social shoutout, a mention).';}
+    else if(val>=450){tier='Gold';note='Strong — a directory listing + social feature, or a short banner run.';}
+    else if(val>=250){tier='Silver';note='Fair — offer one mid-value asset (directory listing or social feature).';}
+    else if(val>=100){tier='Bronze';note='Low — trade only no-cost assets (a social shoutout, a mention).';}
     else{tier='Decline';note='Give up nothing of value. Not worth a GlobalAir.com link back.';}
     document.getElementById('tierOut').innerHTML='<span class="dot" style="background:'+tierColors[tier]+'"></span>'+tier;
     document.getElementById('tierNote').textContent=note;
